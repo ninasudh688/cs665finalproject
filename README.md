@@ -100,7 +100,13 @@ messing up the existing code.
       - BoredomState.js defines state behaviors when pet is bored/wants to do soemthing
       - SickState.js deines state behaviors when pet is not feeling well
 
- 
+# Running My Code And UML:
+
+- I placed my UML diagram in cs665_finalproject_UMLDiagram_Sudheesh.PDF within this zipped folder
+- I placed my code in package virtualpetsimulator under the edu.bu.met.cs665 package.
+- The Main class is outside this package - Its acting as the Client class in Adapter pattern.
+- I tested my code using junit tests by using a JUnit test class TestPetSimulator in the test package.
+- The code compiles using mvn clean compile.
 
 # Maven Commands
 
