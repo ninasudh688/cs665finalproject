@@ -1,17 +1,16 @@
 
 | CS-665       | Software Design & Patterns |
 |--------------|----------------------------|
-| Name         | FIRST_NAME LAST_NAME       |
-| Date         | MM/DD/YYYY                 |
-| Course       | Fall / Spring / Summer     |
-| Assignment # |                            |
+| Name         | NINA SUDHEESH              |
+| Date         | 12/3/2024                  |
+| Course       | Fall                       |
+| Assignment # | final project              |
 
 # Assignment Overview
-Please add a paragraph or two overviewing the objectives of the assignment.
-
+THe goal of the assignment is to create an idea and use class design apttern and junits 
+and one new design pattern.
 # GitHub Repository Link:
-https://github.com/{YOUR_USERNAME}/cs-665-assignment-{ASSIGNMENT_NUMBER}
-
+https://github.com/ninasudh688/cs665finalproject
 # Implementation Description 
 
 
@@ -25,6 +24,83 @@ easy for others to read and maintain.
 - If applicable, mention any design patterns you have used and explain why they were
 chosen.
 
+- The implementation has been kept simple and easy to understand by organizing the code.
+  - The state and command interface helps to organize the code logically, ensuring a clean
+    separation of concerns.
+  - This decoupling makes the system flexible and easy to extend, as new features 
+can be added without disrupting existing functionality.
+  - - Each class serves a distinct job making it easy for others to read and maintain.
+  - This separation of the classes' roles helps make the code more readable.
+  - Also, all the code is documented with doc-blocks that explain each method/class's purpose.
+
+
+CLasses I used:
+- I chose builder pattern  
+  - The Builder pattern centralizes the logic for creating pet objects, so there is no need to duplicate
+    construction logic across multiple places in the code. 
+  - By using the Builder, we avoid bloated mutiple long constructors  and ensure that
+    consistent object creation is done in a modular and clean manner,making it  DRY.
+- Here is how I set up the classes:.
+  - Pet.js: Model of  name, type, age, energy level, state). 
+    - The builder pattern simplifies its creation without requiring numerous constructors.
+  - PetBuilder.js (interface Builder):
+    -  Declares the methods for setting each attribute of a Pet object (e.g., setPetName, setPetType).
+  - StandardPetBuilder.js (Concrete Builder):
+    - Implements the methods from PetBuilder to assemble a standard pet.
+  - PetDirector.js = builderDirector:
+    - Oversees the construction process and ensures all necessary steps are executed in the right order. 
+  - Adding new attributes (e.g., color, size) or pet types requires minimal changes which makes it easier to maintain. 
+  - The design pattern allows the system to handle future variations of pets or attributes without
+  - modifying the core logic. Developers can create variations like ExoticPetBuilder or 
+  SeaPet without altering the existing builder logic. 
+   - In all it makes the code more readable and flexible.
+ 
+
+- I chose Command pattern  
+  - Command Pattern: Decouples actions, making it flexible and enabling the reuse of commands. 
+    - It allows for change in one place so that so if the behavior of the pet or commands needs to change, 
+only the relevant command classes or the state handling logic needs to be updated, without requiring changes 
+in the Pet class or the Invoker. This prevents duplication which makes the system easier to maintain.
+    - The design pattern allows adding new actions like TrainCommand, PlayWithToyCommand without modifying the existing 
+code, since you just need to create new concrete command classes. It also enables easily incorporating features 
+like undo/redo for actions,
+- Here is how I set up the classes:.
+  - Command.js (CommandInterface):
+    - Declares the execute and undo method that all commands implement.
+  - Concrete Commands:
+    - FeedCommand.js,PlayCommand.js,WalkCommand.js,HealCommand.js,SLeepCommand.js: 
+       - They implement state-specific actions that change the pet's state or attributes. 
+      - Each command performs a different task (e.g., feeding increases energy, playing changes mood) 
+  and delegates to the pet’s current state.
+  - PetActionInvoker.js = Invoker:
+    - Executes commands on pets and allows for future features like undo or redo command.
+  - Pet.js is receiver in the command pattern but 
+    - also the Holds a reference to its current State object, delegating behavior to it.
+ 
+- I chose State pattern  
+  - The State pattern allows the Pet object to change its behavior based on its current state.
+    If you have state-speciific behaviors in separate classes, you avoid using complex if else conditionals 
+in the Pet class.
+   - Each state class implements specific behaviors like feeding, playing, or healing, 
+ensuring that the pet’s actions are dynamically altered depending on its current state. 
+   - The state object can be changed to reflect changes in the pet’s condition 
+     - Ex: transitioning from HappyState to TiredState when the pet is overexerted after walk
+   - This makes it easy to update pet’s behavior as its state changes and maintain it.
+  -This pattern allows for easy additions of new states (e.g., HyperactiveState) in the future without 
+messing up the existing code. 
+   - Here is how I set up the classes:
+    - State.js (Interface):
+      - Declares methods for state-specific behaviors, such as heal, play, or feed.
+    - The Pet.js class holds a reference to its current state, delegating behavior to that state.
+    - Concrete States:
+      - HappyState.js: Defines state behaviors when the pet is happy
+      - TiredState.js: defines state behaviors when the pet is tired
+      - HungerState.js: Defines state behaviors when the pet is hungry
+      - ActiveState.js: defines stare behaviors when the pet is ready to exercise or walk 
+      - BoredomState.js defines state behaviors when pet is bored/wants to do soemthing
+      - SickState.js deines state behaviors when pet is not feeling well
+
+ 
 
 # Maven Commands
 
